@@ -7,12 +7,11 @@ Python 3.x and greater
 ```
 important_things = ["important"] * 20
 
-  with ProgWithMsg() as p:
+with ProgWithMsg() as p:
     for idx in range(len(important_things)):
-
-      msg = "processing important thing no. {}".format(idx)
-      p.update(idx, len(important_things), msg)
-      time.sleep(0.1)
+        msg = "processing important thing no. {}".format(idx)
+        p.update(idx, len(important_things), msg)
+        time.sleep(0.1)
 ```
 ### Results
 ```
@@ -39,3 +38,37 @@ processing important thing no. 18
 processing important thing no. 19
 [================================================  ] 100.00% 20/20
 ```
+A message isn't required to update the state of the progress bar, though.
+```
+important_things = ["important"] * 20
+
+with ProgWithMsg() as p:
+    for idx in range(len(important_things)):
+        # Do useful things here
+        if idx % 2 == 0: # Skip odd numbers
+            msg = "processing important thing no. {}".format(idx) 
+        else:
+            msg = None
+        
+        p.update(idx, len(important_things), msg)
+        time.sleep(0.1)
+```
+### Results
+```
+PS C:PythonProgressMessageBar> python .\test.py
+processing important thing no. 0
+processing important thing no. 2
+processing important thing no. 4
+processing important thing no. 6
+processing important thing no. 8
+processing important thing no. 10
+processing important thing no. 12
+processing important thing no. 14
+processing important thing no. 16
+processing important thing no. 18
+[================================================  ] 100.00% 20/20
+```
+
+
+
+
