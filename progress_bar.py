@@ -4,9 +4,9 @@ WIDTH = 50
 
 class ProgWithMsg(object):
 
-    def __init__(self, width=WIDTH):
+    def __init__(self, bar_width=WIDTH):
 
-        self.width = width
+        self.width = bar_width
 
     def __enter__(self):
 
@@ -19,8 +19,8 @@ class ProgWithMsg(object):
             clear = " " * (termw - 1 - len(msg))
             print(msg + clear, flush=True)
         
-        prog = int(WIDTH * done / total) + 1
-        bar = "\r[{}{}] {:.02f}% {}/{}".format('=' * prog, ' ' * (WIDTH - prog), ((done+1)/total) * 100, done + 1, total)
+        prog = int(self.width * done / total) + 1
+        bar = "\r[{}{}] {:.02f}% {}/{}".format('=' * prog, ' ' * (self.width - prog), ((done+1)/total) * 100, done + 1, total)
         print(bar, end="\r", flush=True)
 
     def __exit__(self, exc_type, exc_value, traceback): 
