@@ -20,9 +20,12 @@ class ProgWithMsg(object):
             print(msg + clear, flush=True)
         
         prog = int(self.width * done / total) + 1
-        bar = "\r[{}{}] {:.02f}% {}/{}".format('=' * prog, ' ' * (self.width - prog), ((done+1)/total) * 100, done + 1, total)
+        bar = f"\r[{'='*prog}{' ' * (self.width - prog)}] {((done + 1)/total) * 100:.02f}% {done + 1}/{ total}"
         print(bar, end="\r", flush=True)
+        
+        if done + 1 == total: 
+            print()
 
     def __exit__(self, exc_type, exc_value, traceback): 
         
-        print()
+        pass
